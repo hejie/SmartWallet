@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="android.widget.LinearLayout"/>
+<fullyQualifiedTypeName name="com.nicholas.smartwalletapp.R.id"/>
+<fullyQualifiedTypeName name="android.support.v4.app.ListFragment"/>
+<fullyQualifiedTypeName name="com.nicholas.quickreturnlistviewlibrary.QuickReturnListView"/>
+<fullyQualifiedTypeName name="android.support.v4.app.Fragment"/>
+<fullyQualifiedTypeName name="android.app.Fragment"/>
+<fullyQualifiedTypeName name="android.widget.ListView"/>
+<fullyQualifiedTypeName name="com.fourmob.poppyview.PoppyViewHelper"/>
+<fullyQualifiedTypeName name="android.widget.AbsListView"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="com.nicholas.smartwalletapp.R.layout"/>
+<fullyQualifiedTypeName name="android.graphics.drawable.GradientDrawable"/>
+<fullyQualifiedTypeName name="com.nicholas.smartwalletapp.R.color"/>
+<fullyQualifiedTypeName name="android.graphics.drawable.ShapeDrawable"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.nicholas.smartwallet.ui.R.color"/>
+<fullyQualifiedTypeName name="android.content.Intent"/>
+<fullyQualifiedTypeName name="com.nicholas.smartwallet.model.SandwichWizardModel"/>
+<fullyQualifiedTypeName name="android.app.AlertDialog.Builder"/>
+<fullyQualifiedTypeName name="com.nicholas.smartwallet.ui.R.string"/>
+<fullyQualifiedTypeName name="android.content.DialogInterface.OnClickListener"/>
+</qualifiedTypeNameHistroy>

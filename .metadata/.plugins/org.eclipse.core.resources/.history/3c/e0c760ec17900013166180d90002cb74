@@ -1,0 +1,196 @@
+package com.nicholas.smartwalletapp;
+
+import java.util.ArrayList;
+
+
+import android.app.Fragment;
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.animation.TranslateAnimation;
+import android.widget.AbsListView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.AbsListView.OnScrollListener;
+
+import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
+import com.nicholas.quickreturnlistviewlibrary.QuickReturnListView;
+
+import com.nicholas.smartwalletapp.R;
+
+public class OverviewFragment extends Fragment {
+	/**** *set up for array list ******/ 
+	View V;
+	QuickReturnListView LV;
+	AccListAdapter adapter;
+	public  ArrayList<AccListItem> AccListViewValuesArr = new ArrayList<AccListItem>();
+	/*** footer element ***/
+	private LinearLayout footerlayout;
+	private int mQuickReturnHeight;
+
+	private static final int STATE_ONSCREEN = 0;
+	private static final int STATE_OFFSCREEN = 1;
+	private static final int STATE_RETURNING = 2;
+	private int mState = STATE_ONSCREEN;
+	private int mScrollY;
+	private int mMinRawY = 0;
+
+	private TranslateAnimation anim;
+	
+	public OverviewFragment() {
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		V = inflater.inflate(R.layout.fragment_overview, container, false);
+		footerlayout = (LinearLayout)V.findViewById(R.id.overview_footer);
+		return V;
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+
+		/******** Take some data in Arraylist ( CustomListViewValuesArr ) ***********/
+		setListData();
+		
+		/*** show main balance in text view ***/
+		TextView mainbalance_text = (TextView)V.findViewById(R.id.overview_mainbalance);
+		mainbalance_text.setText("Main balance: SGD 9000");
+		
+		/**** set up list view ***/
+		Resources res = getResources();
+		LV = (QuickReturnListView) getActivity().findViewById(R.id.accList);
+		adapter = new AccListAdapter(getActivity(), AccListViewValuesArr, res);
+		/********* assign the Listview to the AnimationAdapter ***********/
+		SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(adapter);
+		swingBottomInAnimationAdapter.setAbsListView(LV);
+		LV.setAdapter(swingBottomInAnimationAdapter);
+		
+		LV.getViewTreeObserver().addOnGlobalLayoutListener(
+				new ViewTreeObserver.OnGlobalLayoutListener() {
+					@Override
+					public void onGlobalLayout() {
+						mQuickReturnHeight = footerlayout.getHeight();
+						LV.computeScrollY();
+					}
+				});
+
+		LV.setOnScrollListener(new OnScrollListener() {
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+
+				mScrollY = 0;
+				int translationY = 0;
+
+				if (LV.scrollYIsComputed()) {
+					mScrollY = LV.getComputedScrollY();
+				}
+
+				int rawY = mScrollY;
+
+				switch (mState) {
+				case STATE_OFFSCREEN:
+					if (rawY >= mMinRawY) {
+						mMinRawY = rawY;
+					} else {
+						mState = STATE_RETURNING;
+					}
+					translationY = rawY;
+					break;
+
+				case STATE_ONSCREEN:
+					if (rawY > mQuickReturnHeight) {
+						mState = STATE_OFFSCREEN;
+						mMinRawY = rawY;
+					}
+					translationY = rawY;
+					break;
+
+				case STATE_RETURNING:
+
+					translationY = (rawY - mMinRawY) + mQuickReturnHeight;
+
+					System.out.println(translationY);
+					if (translationY < 0) {
+						translationY = 0;
+						mMinRawY = rawY + mQuickReturnHeight;
+					}
+
+					if (rawY == 0) {
+						mState = STATE_ONSCREEN;
+						translationY = 0;
+					}
+
+					if (translationY > mQuickReturnHeight) {
+						mState = STATE_OFFSCREEN;
+						mMinRawY = rawY;
+					}
+					break;
+				}
+			}
+
+			@Override
+			public void onScrollStateChanged(AbsListView arg0, int arg1) {
+				// TODO Auto-generated method stub
+			}
+		});
+	}
+	
+	/****** Function to set data in ArrayList *************/
+	public void setListData()
+	{
+		AccListViewValuesArr.clear();
+
+		AccListItem account = new AccListItem();
+		/******* Firstly take data in model object ******/
+		account.setAccName("Cash 1");
+		account.setImage("cash");
+		account.setBalance(900);
+		account.setCurrency("SGD");
+		/******** Take Model Object in ArrayList **********/
+		AccListViewValuesArr.add(account);
+
+		/******* Subsequently ******/
+		account = new AccListItem();
+		account.setAccName("Cash 2");
+		account.setImage("cash");
+		account.setBalance(1000);
+		account.setCurrency("MYR");
+		AccListViewValuesArr.add(account);
+
+		account = new AccListItem();
+		account.setAccName("Master Card");
+		account.setImage("credit");
+		account.setBalance(2000);
+		account.setCurrency("SGD");
+		AccListViewValuesArr.add(account);
+
+		account = new AccListItem();
+		account.setAccName("POSB Bank");
+		account.setImage("bank");
+		account.setBalance(3000);
+		account.setCurrency("SGD");
+		AccListViewValuesArr.add(account);
+
+		account = new AccListItem();
+		account.setAccName("Personal Savings");
+		account.setImage("saving");
+		account.setBalance(300);
+		account.setCurrency("SGD");
+		AccListViewValuesArr.add(account);
+
+		account = new AccListItem();
+		account.setAccName("Emergency");
+		account.setImage("emergency");
+		account.setBalance(500);
+		account.setCurrency("SGD");
+		AccListViewValuesArr.add(account);
+			
+	}
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/overview_total_title"
+        android:text = " Total Balance  "
+        android:textAppearance="?android:attr/textAppearanceMediumInverse"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:background="@color/greensea" />
+        
+    <TextView
+        android:id="@+id/overview_total_value"
+        android:textAppearance="?android:attr/textAppearanceLargeInverse"
+        android:gravity="center"
+        android:layout_toRightOf = "@id/overview_total_title"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/turquoise" />
+
+    <ListView
+        android:id="@+id/accList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/overview_total_value"
+        android:background="@color/silver"
+        android:clipToPadding="false"
+        android:divider="@color/silver"
+        android:dividerHeight="@dimen/item_large_padding"
+        android:fadingEdge="none"
+        android:padding="@dimen/item_large_padding"
+        android:scrollbarStyle="outsideOverlay" />
+       
+</RelativeLayout>

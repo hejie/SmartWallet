@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+ <TextView
+     android:id="@+id/graphtitle_text"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="16dp"
+     android:background="@color/cyan"
+     android:text="Expenses"
+     android:textAppearance="?android:attr/textAppearanceLargeInverse" />
+    
+<com.echo.holographlibrary.PieGraph
+    android:id="@+id/graph"
+    android:layout_width="match_parent"
+    android:layout_height="200dp" 
+    android:layout_below="@id/graphtitle_text"
+    android:layout_marginTop="16dp"/>
+
+<com.echo.holographlibrary.BarGraph
+    android:id="@+id/barchart_graph"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_below="@id/graph"
+    android:layout_marginTop="16dp" />
+
+</RelativeLayout>

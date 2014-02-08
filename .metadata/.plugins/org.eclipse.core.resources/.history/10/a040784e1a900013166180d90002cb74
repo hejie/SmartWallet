@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/walletshape_external"
+    android:paddingLeft="@dimen/item_large_padding"
+    android:paddingTop="@dimen/item_large_padding"
+    android:paddingBottom="@dimen/item_large_padding">
+    
+    <TextView
+        android:id="@+id/accName_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/walletshape_internal"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse" />
+        
+    <ImageView
+        android:id="@+id/accIcon_image"
+        android:layout_width="@dimen/item_icon_width"
+        android:layout_height="@dimen/item_icon_height" 
+        android:contentDescription="@string/desc_list_item_icon"
+        android:layout_below="@id/accName_text"/>
+    
+    <TextView
+        android:id="@+id/accDesc_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/accName_text" 
+        android:layout_toRightOf="@id/accIcon_image"
+        android:padding="@dimen/item_small_padding"/>
+        
+    <TextView
+        android:id="@+id/accBalance_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right|bottom"
+        android:layout_below="@id/accDesc_text" 
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:paddingRight="@dimen/item_large_padding"/>
+
+
+</RelativeLayout>

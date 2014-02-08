@@ -1,0 +1,5 @@
+package com.nicholas.smartwallet.ui;
+
+public class TransactionActivity {
+
+}
