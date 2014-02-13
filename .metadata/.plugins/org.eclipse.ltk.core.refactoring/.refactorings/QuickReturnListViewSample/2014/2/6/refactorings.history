@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy element &apos;QuickReturnListView.java&apos; to &apos;QuickReturnListViewLibrary/src&apos;&#x0D;&#x0A;- Original project: &apos;QuickReturnListViewSample&apos;&#x0D;&#x0A;- Destination element: &apos;QuickReturnListViewLibrary/src&apos;&#x0D;&#x0A;- Original element: &apos;com.larswerkman.quickreturnlistview.QuickReturnListView.java&apos;" description="Copy compilation unit" destination="=QuickReturnListViewLibrary/src" element1="/src&lt;com.larswerkman.quickreturnlistview{QuickReturnListView.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1391788364555" units="1" version="1.0"/>
-</session>
