@@ -8,6 +8,8 @@ import com.nicholas.smartwallet.ui.R;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,14 +24,14 @@ public class AccListAdapter extends BaseAdapter implements OnClickListener {
 
 	/*********** Declare Used Variables *********/
     private Activity activity;
-    private ArrayList data;
+    private ArrayList<AccountModel> data;
     private static LayoutInflater inflater=null;
     public Resources res;
     AccountModel tempValues=null;
     int i=0;
      
     /*************  CustomAdapter Constructor *****************/
-    public AccListAdapter(Activity a, ArrayList d,Resources resLocal) {
+    public AccListAdapter(Activity a, ArrayList<AccountModel> d,Resources resLocal) {
          
            /********** Take passed values **********/
             activity = a;
@@ -94,7 +96,7 @@ public class AccListAdapter extends BaseAdapter implements OnClickListener {
          
         if(data.size()<=0)
         {
-            holder.accName_text.setText("No wallet added");
+            holder.accName_text.setText("No account added");
              
         }
         else
@@ -108,11 +110,18 @@ public class AccListAdapter extends BaseAdapter implements OnClickListener {
              holder.accName_text.setText(" " + tempValues.getAccName() );
              holder.description_text.setText(tempValues.getDescription());
              holder.balance_text.setText(tempValues.getCurrency() + " " + String.format("%.2f", tempValues.getBalance()));
-             holder.accIcon_image.setImageResource(res.getIdentifier("img_"+tempValues.getImage() ,"drawable",parent.getContext().getPackageName()));
-             GradientDrawable accNametext_bg = (GradientDrawable) holder.accName_text.getBackground();
-             accNametext_bg.setColor(res.getColor(res.getIdentifier(tempValues.getColor(),"color", parent.getContext().getPackageName())));
+             // get color from parsing argb
+             int accColor = res.getColor(res.getIdentifier(tempValues.getColor(),"color", parent.getContext().getPackageName()));
+             // set color of view
+             GradientDrawable accView_bg = (GradientDrawable) vi.getBackground();
+             accView_bg.setColor(accColor);
+             // set color of icon
+             Mode mMode = Mode.SRC_ATOP;
+             Drawable accIcon = res.getDrawable(res.getIdentifier("img_"+tempValues.getType() ,"drawable",parent.getContext().getPackageName()));
+             accIcon.setColorFilter(res.getColor(R.color.clouds),mMode);
+             // then, assign icon to imageview
+             holder.accIcon_image.setImageDrawable(accIcon);
              /******** Set Item Click Listener for LayoutInflater for each row *******/
-
              vi.setOnClickListener(new OnItemClickListener( position ));
         }
         return vi;
@@ -138,7 +147,7 @@ public class AccListAdapter extends BaseAdapter implements OnClickListener {
 
          /****  Call  onItemClick Method inside CustomListViewAndroidExample Class ( See Below )****/
 
-            sct.onItemClick(mPosition);
+            sct.onAccItemClick(mPosition);
         }               
     }   
 

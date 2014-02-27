@@ -24,15 +24,15 @@ public final class R {
 		public static final int step_pager_tab_width = 0x7f050000;
 	}
 	public static final class id {
-		public static final int editTextInput = 0x7f0a0012;
-		public static final int your_email = 0x7f0a0011;
-		public static final int your_name = 0x7f0a0010;
+		public static final int editTextInput = 0x7f0a0019;
+		public static final int your_email = 0x7f0a0018;
+		public static final int your_name = 0x7f0a0017;
 	}
 	public static final class layout {
-		public static final int fragment_page = 0x7f030005;
-		public static final int fragment_page_customer_info = 0x7f030006;
-		public static final int fragment_page_text = 0x7f030007;
-		public static final int list_item_review = 0x7f030009;
+		public static final int fragment_page = 0x7f030008;
+		public static final int fragment_page_customer_info = 0x7f030009;
+		public static final int fragment_page_text = 0x7f03000a;
+		public static final int list_item_review = 0x7f03000e;
 	}
 	public static final class string {
 		public static final int hint_your_email = 0x7f060003;

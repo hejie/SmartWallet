@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/acc_listitem"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/walletshape_external"
     android:paddingLeft="@dimen/item_large_padding"
-    android:paddingTop="@dimen/item_large_padding"
-    android:paddingBottom="@dimen/item_large_padding">
+    android:paddingTop="@dimen/item_medium_padding"
+    android:paddingBottom="@dimen/item_medium_padding">
     
     <TextView
         android:id="@+id/accName_text"
@@ -16,8 +17,8 @@
         
     <ImageView
         android:id="@+id/accIcon_image"
-        android:layout_width="@dimen/item_icon_width"
-        android:layout_height="@dimen/item_icon_height" 
+        android:layout_width="@dimen/acc_icon_width"
+        android:layout_height="@dimen/acc_icon_height" 
         android:contentDescription="@string/desc_list_item_icon"
         android:layout_below="@id/accName_text"/>
     

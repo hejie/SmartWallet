@@ -20,14 +20,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
+import dev.dworks.libs.astickyheader.SimpleSectionedListAdapter;
+import dev.dworks.libs.astickyheader.SimpleSectionedListAdapter.Section;
 
 public class MainActivity extends Activity{
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
+    private FragmentManager fragmentManager;
     
     // slide menu title
     private CharSequence mSlideMenuTitle;
@@ -35,29 +37,46 @@ public class MainActivity extends Activity{
     // used to store app title
     private CharSequence mTitle;
  
+    // slide menu sections
+    private String[]  slideMenuSectionArr;
+    private ArrayList<String> mSlideMenuSectionTitles = new ArrayList<String>();
+    private ArrayList<Integer> mSlideMenuSectionPos = new ArrayList<Integer>();
+    private ArrayList<Section> mSlideMenuSections;
     // slide menu items
-    private String[] slideMenuTitles;
-    private TypedArray slideMenuIcons;
- 
+    private String[] slideMenuMainArr, slideMenuViewArr, slideMenuToolsArr, slideMenuOptionsArr;
+    private TypedArray slideMenuMainIcons, slideMenuViewIcons, slideMenuToolsIcons, slideMenuOptionsIcons;
+    private ArrayList<String> mSlideMenuItemTitles = new ArrayList<String>();
     private ArrayList<SlideMenuItem> mSlideMenuItems;
+    
     private SlideMenuAdapter mSlideMenuAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        
+        
+        fragmentManager = getFragmentManager();
+        
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 
         mTitle = mSlideMenuTitle = getTitle();
         
-        // load slide menu items
-        slideMenuTitles = getResources().getStringArray(R.array.slide_main_items);
+        // load slide menu string
+        slideMenuSectionArr= getResources().getStringArray(R.array.slide_sections);
+        slideMenuMainArr = getResources().getStringArray(R.array.slide_main_items);
+        slideMenuViewArr= getResources().getStringArray(R.array.slide_view_items);
+        slideMenuToolsArr = getResources().getStringArray(R.array.slide_tools_items);
+        slideMenuOptionsArr = getResources().getStringArray(R.array.slide_options_items);
  
         // slide menu icons from resources
-        slideMenuIcons = getResources().obtainTypedArray(R.array.slide_main_icons);
+        slideMenuMainIcons = getResources().obtainTypedArray(R.array.slide_main_icons);
+        slideMenuViewIcons = getResources().obtainTypedArray(R.array.slide_view_icons);
+        slideMenuToolsIcons = getResources().obtainTypedArray(R.array.slide_tools_icons);
+        slideMenuOptionsIcons = getResources().obtainTypedArray(R.array.slide_options_icons);
  
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidemenu);
@@ -65,22 +84,67 @@ public class MainActivity extends Activity{
         mSlideMenuItems = new ArrayList<SlideMenuItem>();
  
         // adding slide menu items to array
-        // Overview
-        mSlideMenuItems.add(new SlideMenuItem(slideMenuTitles[0], slideMenuIcons.getResourceId(0, -1)));
-        // Charts
-        mSlideMenuItems.add(new SlideMenuItem(slideMenuTitles[1], slideMenuIcons.getResourceId(1, -1)));
-        // Reports
-        mSlideMenuItems.add(new SlideMenuItem(slideMenuTitles[2], slideMenuIcons.getResourceId(2, -1)));
+        int curSectionPos = 0;
+        // Main section
+        mSlideMenuSectionPos.add(curSectionPos);
+        mSlideMenuSectionTitles.add(slideMenuSectionArr[0]);
+        for(int i=0; i < slideMenuMainArr.length; i++)
+        {
+        	mSlideMenuItems.add(new SlideMenuItem(slideMenuMainArr[i], slideMenuMainIcons.getResourceId(i, -1)));
+        	mSlideMenuItemTitles.add(slideMenuMainArr[i]);
+        }
+        curSectionPos += slideMenuMainArr.length;
+        // View section
+        mSlideMenuSectionPos.add(curSectionPos);
+        mSlideMenuSectionTitles.add(slideMenuSectionArr[1]);
+        for(int i=0; i < slideMenuViewArr.length; i++)
+        {
+        	mSlideMenuItems.add(new SlideMenuItem(slideMenuViewArr[i], slideMenuViewIcons.getResourceId(i, -1)));
+        	mSlideMenuItemTitles.add(slideMenuViewArr[i]);
+        }
+        curSectionPos += slideMenuViewArr.length;
+//        // Tools section 
+//        mSlideMenuSectionPos.add(curSectionPos);
+//        mSlideMenuSectionTitles.add(slideMenuSectionArr[2]);
+//        for(int i=0; i < slideMenuToolsArr.length; i++)
+//        {
+//        	mSlideMenuItems.add(new SlideMenuItem(slideMenuToolsArr[i], slideMenuToolsIcons.getResourceId(i, -1)));
+//        	mSlideMenuItemTitles.add(slideMenuToolsArr[i]);
+//		  }
+//        curSectionPos += slideMenuToolsArr.length;
+        // Options section  
+        mSlideMenuSectionPos.add(curSectionPos);
+        mSlideMenuSectionTitles.add(slideMenuSectionArr[3]);
+//        for(int i=0; i < slideMenuOptionsArr.length; i++)
+//        {
+//        	mSlideMenuItems.add(new SlideMenuItem(slideMenuOptionsArr[i], slideMenuOptionsIcons.getResourceId(i, -1)));
+//          mSlideMenuItemTitles.add(slideMenuOptionsArr[i]);
+//    	  }
+        mSlideMenuItems.add(new SlideMenuItem(slideMenuOptionsArr[2], slideMenuOptionsIcons.getResourceId(2, -1)));
+        mSlideMenuItemTitles.add(slideMenuOptionsArr[2]);
+        
+        // adding sections to array
+        mSlideMenuSections = new ArrayList<Section>();
+		for (int i = 0; i < mSlideMenuSectionPos.size(); i++)
+		{
+			mSlideMenuSections.add(new Section(mSlideMenuSectionPos.get(i), mSlideMenuSectionTitles.get(i)));
+		}
         
         // Recycle the typed array
-        slideMenuIcons.recycle();
- 
-        mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
+        slideMenuMainIcons.recycle();
+        slideMenuViewIcons.recycle();
+        slideMenuToolsIcons.recycle();
+        slideMenuOptionsIcons.recycle();
+        
         
         // setting the slide menu adapter
-        mSlideMenuAdapter = new SlideMenuAdapter(getApplicationContext(),mSlideMenuItems);
-        mDrawerList.setAdapter(mSlideMenuAdapter);
- 
+        mSlideMenuAdapter = new SlideMenuAdapter(this,mSlideMenuItems);
+		/**** assign the Listview to the SimpleSectionedAdapter ***/
+		SimpleSectionedListAdapter sectionedSMAdapter = new SimpleSectionedListAdapter(getApplicationContext(), mSlideMenuAdapter,
+				R.layout.listitem_slidemenu_section, R.id.slideSection_text);
+		sectionedSMAdapter.setSections(mSlideMenuSections.toArray(new Section[0]));
+        mDrawerList.setAdapter(sectionedSMAdapter);
+        
         // enabling action bar app icon and behaving it as toggle button
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
@@ -102,21 +166,10 @@ public class MainActivity extends Activity{
  
         if (savedInstanceState == null) {
             // on first time display view for first nav item
-            displayView(0);
+            chooseFragment(0);
         }
     }
     
-    /**
-     * Slide menu item click listener
-     * */
-    private class SlideMenuClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                long id) {
-            // display view for selected slide menu item
-            displayView(position);
-        }
-    }
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -135,7 +188,19 @@ public class MainActivity extends Activity{
         // Handle action bar actions click
         switch (item.getItemId()) {
         case R.id.action_transaction:
-        	startActivity(new Intent(getApplicationContext(), TransactionActivity.class));
+        	  //Create the intent
+        	  Intent i = new Intent(this, TransactionActivity.class);
+        	  //Create the bundle
+        	  Bundle bundle = new Bundle();
+        	  //Add your data to bundle
+        	  bundle.putString("payeeID", "1120733");
+        	  bundle.putString("payeeName", "Nicholas");
+        	  bundle.putString("category", "person");
+        	  bundle.putString("currency","SGD");
+        	  bundle.putString("location", "Singapore");
+        	  //Add the bundle to the intent
+        	  i.putExtras(bundle);
+        	startActivity(i);
             return true;
         default:
             return super.onOptionsItemSelected(item);
@@ -143,41 +208,71 @@ public class MainActivity extends Activity{
     }
     
     /**
+     * Slide menu item click listener
+     * */
+    public void onSlideMenuItemClick(int position)
+    {
+    	chooseFragment(position);
+    }
+    
+    /**
      * Displaying fragment view for selected slide menu item
      * */
-    private void displayView(int position) {
-        // update the main content by replacing fragments
+    private void chooseFragment(int position)
+    {
         Fragment fragment = null;
         switch (position) {
         case 0:
             fragment = new OverviewFragment();
             break;
         case 1:
+        	fragment = new RecordFragment(0);	// by default display for all accounts
+        	break;
+        case 2:
             fragment = new ChartFragment();
             break;
-        case 2:
+        case 3:
             fragment = new ReportFragment();
             break;
+        case 4:
+        	fragment = new DeveloperFragment();
         default:
             break;
         }
- 
-        if (fragment != null) {
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.frame_container, fragment).commit();
- 
-            // update selected item and title, then close the drawer
-            mDrawerList.setItemChecked(position, true);
-            mDrawerList.setSelection(position);
-            setTitle(slideMenuTitles[position]);
-            mDrawerLayout.closeDrawer(mDrawerList);
+        if(fragment != null)
+        {
+            for(int i = 0; i < fragmentManager.getBackStackEntryCount(); ++i)   
+                fragmentManager.popBackStack();
+            
+        	displayView(position, fragment);
         } else {
             // error in creating fragment
             Log.e("MainActivity", "Error in creating fragment");
         }
     }
- 
+    
+    private void displayView(int position, Fragment fragment) {
+    	// update the main content by replacing fragments
+    	if(position == 0)
+    		fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+    	else	// enable back view to overview fragment
+    		fragmentManager.beginTransaction().replace(R.id.frame_container, fragment,"TAG_FRAGMENT").addToBackStack(null).commit();
+    	
+    	// update selected item and title, then close the drawer
+    	setTitle(mSlideMenuItemTitles.get(position));
+    	int totSec = 0;
+    	for (int i = 0; i < mSlideMenuSectionPos.size(); i++)
+    	{
+    		if(position >= mSlideMenuSectionPos.get(i))
+    			totSec += 1;
+    	}
+    	position += totSec;
+    	mDrawerList.setItemChecked(position, true);
+    	mDrawerList.setSelection(position);
+    	mDrawerLayout.closeDrawer(mDrawerList);
+    }
+    
+    
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
@@ -203,9 +298,22 @@ public class MainActivity extends Activity{
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
     
-	public void onItemClick(int mPosition) {
-		// TODO Auto-generated method stub
+    
+	public void onAccItemClick(int mPosition) {
+		/**** switch to record fragment, provide account name as filter ***/
+		Fragment fragment = new RecordFragment(mPosition+1);
 		
+		displayView(1,fragment);
+
 	}
     
+	@Override
+	public void onBackPressed() {
+    	// update selected item and title to overview
+    	mDrawerList.setItemChecked(1, true);
+    	mDrawerList.setSelection(1);
+    	setTitle(mSlideMenuItemTitles.get(0));
+    	
+	    super.onBackPressed();
+	}
 }

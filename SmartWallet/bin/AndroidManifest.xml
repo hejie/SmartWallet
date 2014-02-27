@@ -8,6 +8,8 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
 
+    <uses-permission android:name="android.permission.NFC"></uses-permission>
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -15,6 +17,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.nicholas.smartwallet.ui.MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +25,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>    
-        <activity android:name="com.nicholas.smartwallet.ui.TransactionActivity"
-            android:label="@string/trans_activity_name"/> 
+        <activity 
+            android:name="com.nicholas.smartwallet.ui.TransactionActivity"
+            android:label="@string/trans_activity_name"
+            android:screenOrientation="portrait"/> 
+        <activity
+            android:name="com.nicholas.smartwallet.ui.NFCActivity"
+            android:label="@string/nfc_activity_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="state/data"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

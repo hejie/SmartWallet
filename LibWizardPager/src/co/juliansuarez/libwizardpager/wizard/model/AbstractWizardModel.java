@@ -34,15 +34,16 @@ public abstract class AbstractWizardModel implements ModelCallbacks {
     private List<ModelCallbacks> mListeners = new ArrayList<ModelCallbacks>();
     private PageList mRootPageList;
 
-    public AbstractWizardModel(Context context) {
-    	mContext = context;
-    	mRootPageList = onNewRootPageList();
-    }
 
+    public AbstractWizardModel(Context context, String...strings) {
+    	mContext = context;
+    	mRootPageList = onNewRootPageList(strings);
+    }
+    
     /**
-     * Override this to define a new wizard model.
+     * Override these to define a new wizard model.
      */
-    protected abstract PageList onNewRootPageList();
+    protected abstract PageList onNewRootPageList(String...strings);
 
     @Override
     public void onPageDataChanged(Page page) {

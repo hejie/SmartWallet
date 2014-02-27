@@ -2,33 +2,47 @@
 <resources>
 
     <string name="app_name">Smart Wallet</string>
+    
     <!--  Action Bar Items -->
     <string name="action_transaction">Transaction</string>
     <string name="action_search">Search</string>
     <string name="action_settings">Setting</string>
     
+    <!-- Slide Menu Sections -->
+    <string-array name="slide_sections">
+        <item >Main</item>
+        <item>View</item>
+        <item >Tools</item>
+        <item >Options</item>    
+    </string-array>
+    
     <!-- Slide Menu Items -->
     <string-array name="slide_main_items">
         <item >Overview</item>
-        <item >Charts</item>
-        <item >Reports</item>
-    </string-array>
-     
+    </string-array>   
+   <string-array name="slide_view_items">
+        <item>Record</item>
+        <item >Chart</item>
+        <item >Report</item>
+    </string-array> 
     <string-array name="slide_tools_items">
         <item >Budget</item>
         <item >Exchange</item>
         <item >Calculator</item>
     </string-array>
-    
     <string-array name="slide_options_items">
         <item >Setting</item>
         <item >Help</item>
+        <item >For Developer</item>
     </string-array>
     
     <!-- Slide Menu Item Icons -->
     <!-- Keep them in order as the titles are in -->
     <array name="slide_main_icons">
         <item>@drawable/ic_menu_overview</item>
+    </array> 
+    <array name="slide_view_icons">
+        <item>@drawable/ic_menu_record</item>
 		<item>@drawable/ic_menu_chart</item>
 		<item>@drawable/ic_menu_report</item>
     </array> 
@@ -40,13 +54,25 @@
     <array name="slide_options_icons">
         <item>@drawable/ic_menu_overview</item>
 		<item>@drawable/ic_menu_overview</item>
+		<item>@drawable/ic_menu_developer</item>
     </array>
        
     <!--  Text view -->
-    <string name="overview_total">  Total Balance  </string>
+    <string name="overview_total">Total Balance</string>
+    <string name="overview_profile">Nicholas</string>
+    <string name="transrecord_account">Account</string>
+    <string name="developer_database">Database</string>
     
-    <!-- Icon Description -->
-    <string name="add_account_icon">Add</string>
+    <!-- Button Description -->
+    <string name="add_account_btn">Add</string>
+    <string name="filter_year_btn">Year</string>
+    <string name="filter_month_btn">Month</string>
+    <string name="filter_day_btn">Day</string>
+    <string name="populate_database_btn">Populate Database</string>
+    <string name="clear_database_btn">Clear Database</string>
+
+    
+    <!--  Icon Description -->
     <string name="desc_list_item_icon">Item Icon</string>
     
     <!--  Transaction Wizard -->
@@ -56,4 +82,7 @@
     <string name="next">Next</string>
     <string name="prev">Previous</string>
     <string name="finish">Confirm</string>
+    
+    <!-- NFC Activity -->
+    <string name="nfc_activity_name">NFC</string>
 </resources>

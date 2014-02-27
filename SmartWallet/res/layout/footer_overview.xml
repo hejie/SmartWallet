@@ -7,19 +7,16 @@
     android:gravity="center"
     android:orientation="horizontal" >
     
-    <ImageView
+    <Button
         android:id="@+id/add_account_btn"
-        android:layout_width="@dimen/action_icon_width"
-        android:layout_height="@dimen/action_icon_height"
-        android:contentDescription="@string/add_account_icon"
-        android:padding="@dimen/item_small_padding"
-        android:src="@drawable/ic_action_new" />
-
-    <TextView
-        android:id="@+id/overview_footer_desc_text"
+        android:text="@string/add_account_btn"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/clouds"
+        android:background="@drawable/selectable_item_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_account_icon"
-        android:textAppearance="?android:attr/textAppearanceMediumInverse" />
+        android:contentDescription="@string/add_account_btn"
+        android:padding="@dimen/item_small_padding"
+        android:drawableLeft="@drawable/ic_action_new" />
 		
 </LinearLayout>

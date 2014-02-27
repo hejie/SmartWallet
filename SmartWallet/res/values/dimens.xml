@@ -5,11 +5,22 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="action_icon_width">36dp</dimen>
     <dimen name="action_icon_height">36dp</dimen>
+    <dimen name="item_xlarge_padding">25dp</dimen>
     <dimen name="item_large_padding">16dp</dimen>
+    <dimen name="item_medium_padding">10dp</dimen>
     <dimen name="item_small_padding">5dp</dimen>
-    <dimen name="item_icon_width">100dp</dimen>
-    <dimen name="item_icon_height">100dp</dimen>
     <dimen name="item_large_radius">15dp</dimen>
     <dimen name="item_small_radius">7dp</dimen>
-
+    <dimen name="acc_icon_width">100dp</dimen>
+    <dimen name="acc_icon_height">100dp</dimen>
+	<dimen name="profile_image_width">70dp</dimen>
+    <dimen name="profile_image_height">70dp</dimen>
+    <dimen name="icon_big_width">64dp</dimen>
+    <dimen name="icon_big_height">64dp</dimen>
+    <dimen name="icon_mid_width">32dp</dimen>
+    <dimen name="icon_mid_height">32dp</dimen>
+    <dimen name="icon_small_width">16dp</dimen>
+    <dimen name="icon_small_height">16dp</dimen>
+    <dimen name="header_height">150dp</dimen>
+    
 </resources>

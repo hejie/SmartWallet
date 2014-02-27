@@ -22,7 +22,7 @@ public class NumberFragment extends TextFragment {
 			mEditTextInput.setInputType(InputType.TYPE_CLASS_NUMBER);
 		} else {
 			mEditTextInput.setInputType(InputType.TYPE_CLASS_NUMBER
-					| InputType.TYPE_NUMBER_VARIATION_NORMAL);
+					| InputType.TYPE_NUMBER_FLAG_DECIMAL);
 		}
 	}
 

@@ -1,35 +1,43 @@
 package com.nicholas.smartwallet.model;
 
-public class AccountModel {
+public class AccountModel{
 	
 	private double balance;
-	private double budget;
+	private double income;
 	private double expense;
+	private double budget;
 	private String currency;
+	private String accID;
 	private String accName;
-	private String image;
+	private String type;
 	private String color;
 	private String description;
 	
 	public AccountModel()
 	{
 		balance = 0;
+		income = 0;
 		budget = 0;
 		expense = 0;
 		accName = "";
-		image = "";
+		type = "";
 		color = "peterriver";
 		description = "Default Description";
 	}
 	/*********** Set Methods ******************/
+	public void setAccID(String accID)
+	{
+		this.accID = accID;
+	}
+	
 	public void setAccName(String accName)
 	{
 		this.accName = accName;
 	}
 	
-	public void setImage(String image)
+	public void setType(String type)
 	{
-		this.image = image;
+		this.type = type;
 	}
 	
 	public void setColor(String color)
@@ -40,6 +48,11 @@ public class AccountModel {
 	public void setBudget(double budget)
 	{
 		this.budget = budget;
+	}
+	
+	public void setIncome(double income)
+	{
+		this.income = income;
 	}
 	
 	public void setExpense(double expense)
@@ -62,14 +75,19 @@ public class AccountModel {
 		this.description = description;
 	}
 	/*********** Get Methods ****************/
+	public String getAccID()
+	{
+		return this.accID;
+	}
+	
 	public String getAccName()
 	{
 		return this.accName;
 	}
 	
-	public String getImage()
+	public String getType()
 	{
-		return this.image;
+		return this.type;
 	}
 	
 	public String getColor()
@@ -80,6 +98,11 @@ public class AccountModel {
 	public double getBudget()
 	{
 		return this.budget;
+	}
+	
+	public double getIncome()
+	{
+		return this.income;
 	}
 	
 	public double getExpense()
