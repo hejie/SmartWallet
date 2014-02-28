@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/peterriver"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/nfc_logo_image"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="@dimen/icon_big_width"
+        android:layout_height="@dimen/icon_big_height"
+        android:layout_margin="@dimen/item_large_padding"
+        android:src="@drawable/img_nfc"
+        android:contentDescription="@string/desc_list_item_icon"/>
+    
+    <TextView
+        android:id="@+id/nfc_title_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/item_xlarge_padding"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/clouds" />
+	
+     <TextView
+        android:id="@+id/nfc_content_header"
+        android:background="@color/emerald"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/item_medium_padding"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/clouds"  />
+     
+    <ListView
+        android:id="@+id/nfc_content_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/clouds"
+        android:saveEnabled="false"
+        android:scrollbarStyle="outsideInset" />
+
+</LinearLayout>

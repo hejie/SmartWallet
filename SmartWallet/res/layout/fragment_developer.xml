@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical">
+    	
+    	<TextView 
+    	android:id="@+id/database_section"
+    	android:text="@string/developer_database"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_margin="@dimen/item_medium_padding"
+    	    />
+    	
+	    <Button
+        android:id="@+id/populate_database_btn"
+        android:text="@string/populate_database_btn"
+        android:textColor="@color/clouds"
+        android:background="@drawable/normal_button_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/populate_database_btn"
+        android:layout_margin="@dimen/item_small_padding"/>
+	    
+	    <Button
+        android:id="@+id/clear_database_btn"
+        android:text="@string/clear_database_btn"
+        android:textColor="@color/clouds"
+        android:background="@drawable/normal_button_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/clear_database_btn"
+        android:layout_margin="@dimen/item_small_padding"/>
+	    
+</LinearLayout>

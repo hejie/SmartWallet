@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
+    android:background="@color/peterriver"
+    style="@android:style/ButtonBar"
+    android:gravity="center"
+    android:orientation="horizontal" >
+    
+    <Button
+        android:id="@+id/filter_year_btn"
+        android:text="@string/filter_year_btn"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/clouds"
+        android:background="@drawable/selectable_item_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/item_small_padding"
+        android:contentDescription="@string/filter_year_btn" />
+    
+    <Button
+        android:id="@+id/filter_month_btn"
+        android:text="@string/filter_month_btn"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/clouds"
+        android:background="@drawable/selectable_item_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/item_small_padding" />
+    
+    <Button
+        android:id="@+id/filter_day_btn"
+        android:text="@string/filter_day_btn"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/clouds"
+        android:background="@drawable/selectable_item_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/item_small_padding" />		
+        
+</LinearLayout>

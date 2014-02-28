@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/clouds"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+
+        <ImageView
+            android:id="@+id/recordIcon_image"
+            android:layout_width="@dimen/icon_mid_width"
+            android:layout_height="@dimen/icon_mid_height"
+            android:layout_centerVertical="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="@dimen/item_large_padding"
+            android:contentDescription="@string/desc_list_item_icon" />
+
+        <TextView
+            android:id="@+id/recordCat_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/recordIcon_image"
+            android:padding="@dimen/item_small_padding"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/recordPayee_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recordCat_text"
+            android:layout_toRightOf="@id/recordIcon_image"
+            android:padding="@dimen/item_small_padding"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/recordAmount_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:paddingTop="@dimen/item_small_padding"
+            android:paddingRight="@dimen/item_large_padding"
+            android:paddingLeft="@dimen/item_large_padding"
+            android:paddingBottom="@dimen/item_large_padding"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/recordLocation_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:paddingTop="@dimen/item_medium_padding"
+            android:paddingRight="@dimen/item_large_padding"
+            android:textColor="@color/asbestos"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <ImageView
+            android:id="@+id/locationIcon_image"
+            android:layout_width="@dimen/icon_small_width"
+            android:layout_height="@dimen/icon_small_height"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/recordLocation_text"
+            android:contentDescription="@string/desc_list_item_icon"
+            android:src="@drawable/ic_action_place" />
+
+</RelativeLayout>

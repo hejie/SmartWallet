@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/peterriver" >
+    
+	    <com.makeramen.RoundedImageView
+	        xmlns:app="http://schemas.android.com/apk/res-auto"
+	        android:id="@+id/profile_image"
+	        android:layout_width="@dimen/profile_image_width"
+	        android:layout_height="@dimen/profile_image_width"
+	        android:layout_marginTop="@dimen/item_xlarge_padding"
+	        android:layout_marginRight="@dimen/item_xlarge_padding"
+	        android:layout_marginLeft="@dimen/item_xlarge_padding"
+	        android:layout_marginBottom="@dimen/item_xlarge_padding"
+	        android:scaleType="centerCrop"
+	        android:src="@drawable/profile"
+	        app:border_color="@color/clouds"
+	        app:border_width="2dip"
+	        app:corner_radius="30dip"
+	        app:round_background="true" 
+	        app:is_oval="true"/>
+	    
+	    <TextView
+	        android:id="@+id/overview_profile_name"
+	        android:text = "@string/overview_profile"
+	        android:layout_toRightOf = "@id/profile_image"
+	        android:textAppearance="?android:attr/textAppearanceLargeInverse"
+	        android:padding="@dimen/item_large_padding"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" />
+	    	    
+	    <TextView
+	        android:id="@+id/overview_total_title"
+	        android:text = "@string/overview_total"
+	        android:textAppearance="?android:attr/textAppearanceMediumInverse"
+	        android:layout_toRightOf = "@id/profile_image"
+	        android:layout_below="@id/overview_profile_name"
+	        android:paddingLeft="@dimen/item_large_padding"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" />
+	        
+	    <TextView
+	        android:id="@+id/overview_total_value"
+	        android:textAppearance="?android:attr/textAppearanceLargeInverse"
+	        android:paddingLeft="@dimen/item_large_padding"
+	        android:paddingBottom="@dimen/item_large_padding"
+	        android:layout_toRightOf = "@id/profile_image"
+	        android:layout_below="@id/overview_total_title"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" />
+	    
+</RelativeLayout>

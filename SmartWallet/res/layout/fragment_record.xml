@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+	<LinearLayout
+        android:id="@+id/record_header"
+        android:layout_width="match_parent"
+   		android:layout_height="wrap_content"
+   		android:orientation="horizontal"
+   		android:background="@color/peterriver">
+   		<TextView
+            android:id="@+id/record_acc_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:layout_gravity="center"
+			android:padding = "@dimen/item_large_padding"
+			android:layout_marginLeft="@dimen/item_xlarge_padding"
+			android:layout_marginRight="@dimen/item_xlarge_padding"
+            android:text="@string/transrecord_account"
+            android:textAppearance="?android:attr/textAppearanceMediumInverse" />
+
+        <Spinner
+            android:id="@+id/record_acc_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding = "@dimen/item_large_padding"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	</LinearLayout>
+	
+    <ListView
+        android:id="@+id/recordList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/record_header"
+        android:background="@color/silver"
+        android:clipToPadding="false"
+        android:divider="@color/silver"
+        android:dividerHeight="@dimen/item_small_padding"
+        android:fadingEdge="none"
+        android:padding="@dimen/item_large_padding"
+        android:scrollbarStyle="outsideOverlay" />
+       
+</RelativeLayout>
