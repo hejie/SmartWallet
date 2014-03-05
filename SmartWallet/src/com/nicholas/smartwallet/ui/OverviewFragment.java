@@ -3,6 +3,7 @@ package com.nicholas.smartwallet.ui;
 import java.util.ArrayList;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.res.Resources;
@@ -24,14 +25,15 @@ import com.nicholas.smartwallet.model.AccountModel;
 import com.nicholas.smartwallet.data.*;
 import com.nicholas.smartwallet.ui.R;
 
-public class OverviewFragment extends Fragment {
+@SuppressLint("ValidFragment") public class OverviewFragment extends Fragment {
 	/**** *set up for array list ******/ 
 	View V;
 	ListView LV;
 	AccListAdapter adapter;
+	
 	private database SQLiteAdapter;
 	
-	public  ArrayList<AccountModel> AccListViewValuesArr = new ArrayList<AccountModel>();
+	ArrayList<AccountModel> accListViewValuesArr = new ArrayList<AccountModel>();
 	/*** footer element ***/
 	private PoppyViewHelper mPoppyViewHelper;
 	
@@ -41,6 +43,8 @@ public class OverviewFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+  
+        // set up database for reading
 		SQLiteAdapter = new database(this.getActivity().getApplicationContext());
 		SQLiteAdapter.openToRead();
     }
@@ -77,14 +81,14 @@ public class OverviewFragment extends Fragment {
 		
 		/*** show main balance in text view ***/
 		double mainbalance = 0;
-		for(AccountModel acc : AccListViewValuesArr)
+		for(AccountModel acc : accListViewValuesArr)
 			mainbalance += acc.getBalance();
 		TextView mainbalance_text = (TextView)V.findViewById(R.id.overview_total_value);
 		mainbalance_text.setText("SGD " + String.format("%.2f", mainbalance));
 		
 		/**** set up list view ***/
 		Resources res = getResources();
-		adapter = new AccListAdapter(getActivity(), AccListViewValuesArr, res);
+		adapter = new AccListAdapter(getActivity(), accListViewValuesArr, res);
 		/********* assign the Listview to the AnimationAdapter ***********/
 		SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(adapter);
 		swingBottomInAnimationAdapter.setAbsListView(LV);
@@ -95,7 +99,7 @@ public class OverviewFragment extends Fragment {
 	/****** Function to set data in ArrayList *************/
 	public void setAccListData()
 	{
-		AccListViewValuesArr.clear();
+		accListViewValuesArr.clear();
 		Cursor acc_all_cursor = SQLiteAdapter.query_Account_ALL();	
 		if(acc_all_cursor != null)
 		{
@@ -113,12 +117,11 @@ public class OverviewFragment extends Fragment {
 					account.setBudget(acc_all_cursor.getFloat(acc_all_cursor.getColumnIndex(database.ACC_BUDG)));
 					account.setExpense(acc_all_cursor.getFloat(acc_all_cursor.getColumnIndex(database.ACC_EXP)));
 					account.setIncome(acc_all_cursor.getFloat(acc_all_cursor.getColumnIndex(database.ACC_INC)));
-					AccListViewValuesArr.add(account);
+					accListViewValuesArr.add(account);
 				}while(acc_all_cursor.moveToNext());
 			}
 		}
-		acc_all_cursor.close();	
-			
+		acc_all_cursor.close();		
 	}
 	
 	

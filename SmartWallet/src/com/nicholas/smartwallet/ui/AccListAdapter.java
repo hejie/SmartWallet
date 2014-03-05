@@ -96,7 +96,7 @@ public class AccListAdapter extends BaseAdapter implements OnClickListener {
          
         if(data.size()<=0)
         {
-            holder.accName_text.setText("No account added");
+            holder.description_text.setText("Press '+' on ActionBar to add account");
              
         }
         else
@@ -114,7 +114,10 @@ public class AccListAdapter extends BaseAdapter implements OnClickListener {
              int accColor = res.getColor(res.getIdentifier(tempValues.getColor(),"color", parent.getContext().getPackageName()));
              // set color of view
              GradientDrawable accView_bg = (GradientDrawable) vi.getBackground();
+             GradientDrawable accName_bg = (GradientDrawable) holder.accName_text.getBackground();
              accView_bg.setColor(accColor);
+             accName_bg.setColor(accColor);
+             accName_bg.setColorFilter(accColor,Mode.MULTIPLY);
              // set color of icon
              Mode mMode = Mode.SRC_ATOP;
              Drawable accIcon = res.getDrawable(res.getIdentifier("img_"+tempValues.getType() ,"drawable",parent.getContext().getPackageName()));

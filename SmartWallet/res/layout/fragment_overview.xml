@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
-    android:background="@color/silver">
+    android:background="@color/clouds">
 	
     <ListView
         android:id="@+id/accList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:divider="@color/silver"
+        android:divider="@color/clouds"
         android:dividerHeight="@dimen/item_large_padding"
         android:fadingEdge="none"
         android:paddingLeft="@dimen/item_xlarge_padding"

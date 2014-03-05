@@ -1,5 +1,6 @@
 package com.nicholas.smartwallet.model;
 
+
 public class AccountModel{
 	
 	private double balance;
@@ -124,4 +125,5 @@ public class AccountModel{
 	{
 		return this.description;
 	}
+	
 }

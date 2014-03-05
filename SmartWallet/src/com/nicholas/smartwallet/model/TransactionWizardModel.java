@@ -20,14 +20,13 @@ public class TransactionWizardModel extends AbstractWizardModel {
 		
 		return new PageList(new BranchPage(this, "Transaction Type").addBranch(
 				"Incoming",
-				new SingleFixedChoicePage(this, "To").setChoices(strings)
-						.setRequired(true))
+				new SingleFixedChoicePage(this, "To Account").setChoices(strings).setRequired(true))
 		.addBranch(
 				"Outgoing",
-				new SingleFixedChoicePage(this, "From").setChoices(strings)
-						.setRequired(true),					
-				new NumberPage(this, "Amount").setRequired(true)).setRequired(true),
-				new TextPage(this, "Comments"));
+				new SingleFixedChoicePage(this, "From Account").setChoices(strings).setRequired(true),					
+				new NumberPage(this, "Amount").setRequired(true),
+				new TextPage(this, "Comments"))
+		);
 	}
 	
 

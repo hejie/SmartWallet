@@ -204,62 +204,64 @@ containing a value of this type.
         public static final int walletshape_internal=0x7f020032;
     }
     public static final class id {
-        public static final int accBalance_text=0x7f0a0027;
-        public static final int accDesc_text=0x7f0a0026;
-        public static final int accIcon_image=0x7f0a0025;
-        public static final int accList=0x7f0a0016;
-        public static final int accName_text=0x7f0a0024;
-        public static final int acc_listitem=0x7f0a0023;
-        public static final int action_mic=0x7f0a0036;
-        public static final int action_settings=0x7f0a0035;
-        public static final int action_transaction=0x7f0a0037;
-        public static final int add_account_btn=0x7f0a000c;
-        public static final int barchart_graph=0x7f0a0012;
-        public static final int clear_database_btn=0x7f0a0015;
-        public static final int database_section=0x7f0a0013;
-        public static final int divider=0x7f0a0009;
+        public static final int accBalance_text=0x7f0a0029;
+        public static final int accDesc_text=0x7f0a0028;
+        public static final int accIcon_image=0x7f0a0027;
+        public static final int accList=0x7f0a0017;
+        public static final int accName_text=0x7f0a0026;
+        public static final int acc_listitem=0x7f0a0025;
+        public static final int action_mic=0x7f0a0038;
+        public static final int action_settings=0x7f0a0037;
+        public static final int action_transaction=0x7f0a0039;
+        public static final int add_account_btn=0x7f0a000d;
+        public static final int barchart_graph=0x7f0a0013;
+        public static final int clear_database_btn=0x7f0a0016;
+        public static final int database_section=0x7f0a0014;
+        public static final int divider=0x7f0a000a;
         public static final int drawer_layout=0x7f0a0000;
-        public static final int editTextInput=0x7f0a0019;
-        public static final int filter_day_btn=0x7f0a000f;
-        public static final int filter_month_btn=0x7f0a000e;
-        public static final int filter_year_btn=0x7f0a000d;
+        public static final int editTextInput=0x7f0a001a;
+        public static final int filter_day_btn=0x7f0a0010;
+        public static final int filter_month_btn=0x7f0a000f;
+        public static final int filter_year_btn=0x7f0a000e;
         public static final int frame_container=0x7f0a0001;
-        public static final int graph=0x7f0a0011;
-        public static final int graphtitle_text=0x7f0a0010;
+        public static final int graph=0x7f0a0012;
+        public static final int graphtitle_text=0x7f0a0011;
         public static final int list_slidemenu=0x7f0a0002;
-        public static final int locationIcon_image=0x7f0a002f;
-        public static final int manageList=0x7f0a001e;
-        public static final int next_button=0x7f0a000b;
-        public static final int nfc_content_header=0x7f0a0005;
-        public static final int nfc_content_list=0x7f0a0006;
-        public static final int nfc_item_title=0x7f0a0028;
-        public static final int nfc_item_value=0x7f0a0029;
-        public static final int nfc_logo_image=0x7f0a0003;
-        public static final int nfc_title_text=0x7f0a0004;
-        public static final int overview_profile_name=0x7f0a0020;
-        public static final int overview_total_title=0x7f0a0021;
-        public static final int overview_total_value=0x7f0a0022;
-        public static final int pager=0x7f0a0008;
-        public static final int populate_database_btn=0x7f0a0014;
-        public static final int prev_button=0x7f0a000a;
-        public static final int profile_image=0x7f0a001f;
-        public static final int recDate_text=0x7f0a0030;
-        public static final int recTotalAmount_text=0x7f0a0031;
-        public static final int recordAmount_text=0x7f0a002d;
-        public static final int recordCat_text=0x7f0a002b;
-        public static final int recordIcon_image=0x7f0a002a;
-        public static final int recordList=0x7f0a001d;
-        public static final int recordLocation_text=0x7f0a002e;
-        public static final int recordPayee_text=0x7f0a002c;
-        public static final int record_acc_title=0x7f0a001b;
-        public static final int record_acc_type=0x7f0a001c;
-        public static final int record_header=0x7f0a001a;
-        public static final int slideIcon_image=0x7f0a0032;
-        public static final int slideSection_text=0x7f0a0034;
-        public static final int slideTitle_text=0x7f0a0033;
-        public static final int strip=0x7f0a0007;
-        public static final int your_email=0x7f0a0018;
-        public static final int your_name=0x7f0a0017;
+        public static final int locationIcon_image=0x7f0a0031;
+        public static final int manageList=0x7f0a0020;
+        public static final int next_button=0x7f0a000c;
+        public static final int nfc_content_header=0x7f0a0006;
+        public static final int nfc_content_list=0x7f0a0007;
+        public static final int nfc_item_title=0x7f0a002a;
+        public static final int nfc_item_value=0x7f0a002b;
+        public static final int nfc_logo_image=0x7f0a0004;
+        public static final int nfc_panel=0x7f0a0003;
+        public static final int nfc_title_text=0x7f0a0005;
+        public static final int overview_profile_name=0x7f0a0022;
+        public static final int overview_total_title=0x7f0a0023;
+        public static final int overview_total_value=0x7f0a0024;
+        public static final int pager=0x7f0a0009;
+        public static final int populate_database_btn=0x7f0a0015;
+        public static final int prev_button=0x7f0a000b;
+        public static final int profile_image=0x7f0a0021;
+        public static final int recDate_text=0x7f0a0032;
+        public static final int recTotalAmount_text=0x7f0a0033;
+        public static final int recordAmount_text=0x7f0a002f;
+        public static final int recordCat_text=0x7f0a002d;
+        public static final int recordIcon_image=0x7f0a002c;
+        public static final int recordList=0x7f0a001f;
+        public static final int recordLocation_text=0x7f0a0030;
+        public static final int recordPayee_text=0x7f0a002e;
+        public static final int record_acc_title=0x7f0a001c;
+        public static final int record_acc_type=0x7f0a001d;
+        public static final int record_empty_text=0x7f0a001e;
+        public static final int record_header=0x7f0a001b;
+        public static final int slideIcon_image=0x7f0a0034;
+        public static final int slideSection_text=0x7f0a0036;
+        public static final int slideTitle_text=0x7f0a0035;
+        public static final int strip=0x7f0a0008;
+        public static final int your_email=0x7f0a0019;
+        public static final int your_name=0x7f0a0018;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -297,38 +299,39 @@ containing a value of this type.
         public static final int action_transaction=0x7f060006;
         /**  Button Description 
          */
-        public static final int add_account_btn=0x7f06000d;
+        public static final int add_account_btn=0x7f06000e;
         public static final int app_name=0x7f060005;
-        public static final int clear_database_btn=0x7f060012;
+        public static final int clear_database_btn=0x7f060013;
         /**   Icon Description 
          */
-        public static final int desc_list_item_icon=0x7f060013;
-        public static final int developer_database=0x7f06000c;
-        public static final int filter_day_btn=0x7f060010;
-        public static final int filter_month_btn=0x7f06000f;
-        public static final int filter_year_btn=0x7f06000e;
-        public static final int finish=0x7f060019;
+        public static final int desc_list_item_icon=0x7f060014;
+        public static final int developer_database=0x7f06000d;
+        public static final int filter_day_btn=0x7f060011;
+        public static final int filter_month_btn=0x7f060010;
+        public static final int filter_year_btn=0x7f06000f;
+        public static final int finish=0x7f06001a;
         public static final int hint_your_email=0x7f060003;
         public static final int hint_your_name=0x7f060001;
         public static final int label_your_email=0x7f060002;
         public static final int label_your_name=0x7f060000;
-        public static final int next=0x7f060017;
+        public static final int next=0x7f060018;
         /**  NFC Activity 
          */
-        public static final int nfc_activity_name=0x7f06001a;
+        public static final int nfc_activity_name=0x7f06001b;
         public static final int overview_profile=0x7f06000a;
         /**   Text view 
          */
         public static final int overview_total=0x7f060009;
-        public static final int populate_database_btn=0x7f060011;
-        public static final int prev=0x7f060018;
+        public static final int populate_database_btn=0x7f060012;
+        public static final int prev=0x7f060019;
+        public static final int record_account=0x7f06000b;
+        public static final int record_empty=0x7f06000c;
         public static final int review=0x7f060004;
-        public static final int submit_confirm_button=0x7f060016;
-        public static final int submit_confirm_message=0x7f060015;
+        public static final int submit_confirm_button=0x7f060017;
+        public static final int submit_confirm_message=0x7f060016;
         /**   Transaction Wizard 
          */
-        public static final int trans_activity_name=0x7f060014;
-        public static final int transrecord_account=0x7f06000b;
+        public static final int trans_activity_name=0x7f060015;
     }
     public static final class style {
         /** 

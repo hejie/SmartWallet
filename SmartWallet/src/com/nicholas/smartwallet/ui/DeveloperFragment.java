@@ -1,9 +1,13 @@
 package com.nicholas.smartwallet.ui;
 
+import java.util.ArrayList;
+
 import com.nicholas.smartwallet.ui.R;
 import com.nicholas.smartwallet.data.*;
+import com.nicholas.smartwallet.model.*;
 
 import android.app.Fragment;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +19,9 @@ import android.widget.Toast;
 public class DeveloperFragment extends Fragment {
 	
 	private database SQLiteAdapter;
+	
+	private ArrayList<String> AccKeyList = new ArrayList<String>();
+	private ArrayList<String> AccNameList = new ArrayList<String>();
 	
 	public DeveloperFragment() {
 	}
@@ -41,30 +48,42 @@ public class DeveloperFragment extends Fragment {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			/*** Populate ACCOUNT TABLE ***/
-			SQLiteAdapter.insertAccount("Cash 1", "cash", "Cash account", "turquoise","SGD");
-			SQLiteAdapter.insertAccount("Cash 2", "cash", "Cash account", "orange","SGD");
-			SQLiteAdapter.insertAccount("Credit Card", "credit", "Credit card account","amethyst","SGD");
-			SQLiteAdapter.insertAccount("Bank", "bank", "Bank account","emerald","SGD");
-			SQLiteAdapter.insertAccount("Personal Savings", "saving", "Personal savings account","alizarin","SGD");
-			SQLiteAdapter.insertAccount("Emergency", "emergency", "Emergency Fund","sunflower","SGD");
-			SQLiteAdapter.updateAccountBalance(100.00, 0);
-			SQLiteAdapter.updateAccountBalance(150.00, 1);
-			SQLiteAdapter.updateAccountBalance(3000.00, 2);
-			SQLiteAdapter.updateAccountBalance(880.00, 3);
-			SQLiteAdapter.updateAccountBalance(200.00, 4);
-			SQLiteAdapter.updateAccountBalance(500.00, 5);
 			
+			/*** Populate ACCOUNT TABLE ***/
+			SQLiteAdapter.insertAccount_TEST("Cash", "cash", "Cash account", "turquoise","SGD",50.00);
+			SQLiteAdapter.insertAccount_TEST("OCBC Credit Card", "credit", "Credit card account, OCBC Bank", "orange","SGD",50.00);
+			SQLiteAdapter.insertAccount_TEST("DBS Credit Card", "credit", "Credit card account, DBS Bank","amethyst","SGD",50.00);
+			SQLiteAdapter.insertAccount_TEST("Bank", "bank", "Bank account","emerald","SGD",50.00);
+			SQLiteAdapter.insertAccount_TEST("Personal Savings", "saving", "Personal savings account","alizarin","SGD",50.00);
+			SQLiteAdapter.insertAccount_TEST("Emergency", "emergency", "Emergency Fund","sunflower","SGD",50.00);
+			
+			SQLiteAdapter.openToRead();
+			Cursor acc_all_cursor = SQLiteAdapter.query_Account_ALL();
+			AccKeyList.clear();
+			AccNameList.clear();
+			if(acc_all_cursor != null)
+			{
+				if(acc_all_cursor.moveToFirst())
+				{
+					do{
+						AccKeyList.add(acc_all_cursor.getString(acc_all_cursor.getColumnIndex(database.ACC_KEY_ID)));
+						AccNameList.add(acc_all_cursor.getString(acc_all_cursor.getColumnIndex(database.ACC_NAME)));
+					}while(acc_all_cursor.moveToNext());
+				}
+			}
+			acc_all_cursor.close();	
+			
+			SQLiteAdapter.openToWrite();
 			/*** Populate RECORD TABLE ****/
 			for(int i=0;i < 3;i++)
-				SQLiteAdapter.insertRecord("000001", "000001", "out", 10.00, "SGD", 
-						"Transport", "Cash 1", "SMRT", "2014-02-22 00:00:00", "Singapore");
+				SQLiteAdapter.insertRecord("#000001", "000001", "Outgoing", 10.00, "SGD", 
+						"Transport", AccKeyList.get(0),AccNameList.get(0), "SMRT", "2014-02-22 00:00:00", "Singapore","None");
 			for(int i=0;i < 3;i++)
-				SQLiteAdapter.insertRecord("000001", "000001", "out", 20.00, "SGD", 
-						"Transport", "Cash 1",  "SMRT", "2014-02-23 00:00:00", "Singapore");
+				SQLiteAdapter.insertRecord("#000001", "000001", "Outgoing", 20.00, "SGD", 
+						"Transport",AccKeyList.get(0),AccNameList.get(0),  "SMRT", "2014-02-23 00:00:00", "Singapore","None");
 			for(int i=0;i < 3;i++)
-				SQLiteAdapter.insertRecord("000001", "000001", "out", 30.00, "SGD", 
-						"Transport", "Cash 1", "SMRT", "2014-02-24 00:00:00", "Singapore");
+				SQLiteAdapter.insertRecord("#000001", "000001", "Outgoing", 30.00, "SGD", 
+						"Transport",AccKeyList.get(0),AccNameList.get(0), "SMRT", "2014-02-24 00:00:00", "Singapore","None");
 			
 			Toast.makeText(getActivity().getApplicationContext(), "Populated database with sample data!", Toast.LENGTH_LONG).show();
 		}
@@ -84,4 +103,11 @@ public class DeveloperFragment extends Fragment {
 		}
 		
 	}
+	
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        SQLiteAdapter.close();
+    }
+    
 }

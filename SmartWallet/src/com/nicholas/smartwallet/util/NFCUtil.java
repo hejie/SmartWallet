@@ -97,7 +97,7 @@ public class NFCUtil {
 		Toast.makeText(ctx, text, Toast.LENGTH_SHORT).show();
 	}
 
-	private static final String DELIMETER = "-";
+	private static final String DELIMETER = ";";
 	
 	public static NdefMessage createNdefMsg(String[] mContent){
 		NdefMessage ndefMsg = NFCUtil.getStringArrayAsNdef(
@@ -113,7 +113,7 @@ public class NFCUtil {
 
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < payload.length - 1; i++) {
-			sb.append(payload[i] + "-");
+			sb.append(payload[i] + delimiter);
 		}
 		sb.append(payload[payload.length - 1] + "");
 
@@ -141,7 +141,7 @@ public class NFCUtil {
 
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < payload.length - 1; i++) {
-			sb.append(payload[i] + "-");
+			sb.append(payload[i] + delimiter);
 		}
 		sb.append(payload[payload.length - 1] + "");
 

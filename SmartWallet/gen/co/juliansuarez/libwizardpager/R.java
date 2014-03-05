@@ -24,9 +24,9 @@ public final class R {
 		public static final int step_pager_tab_width = 0x7f050000;
 	}
 	public static final class id {
-		public static final int editTextInput = 0x7f0a0019;
-		public static final int your_email = 0x7f0a0018;
-		public static final int your_name = 0x7f0a0017;
+		public static final int editTextInput = 0x7f0a001a;
+		public static final int your_email = 0x7f0a0019;
+		public static final int your_name = 0x7f0a0018;
 	}
 	public static final class layout {
 		public static final int fragment_page = 0x7f030008;

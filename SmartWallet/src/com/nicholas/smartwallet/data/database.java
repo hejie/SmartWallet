@@ -33,10 +33,12 @@ public class database {
 	public static final String REC_AMT = "AMT";
 	public static final String REC_CUR = "CUR";
 	public static final String REC_CAT = "CAT";
+	public static final String REC_ACC_ID = "ACCID";
 	public static final String REC_ACC_NAME = "ACCNAME";
 	public static final String REC_PAY_NAME = "PAYNAME";
 	public static final String REC_DATETIME = "DATETIME";
 	public static final String REC_LOC = "LOC";
+	public static final String REC_COMNT = "COMNT";
 
 	//create table SW_DATABASE (ID integer primary key, Content text not null);
 	private static final String SCRIPT_CREATE_DATABASE =
@@ -61,10 +63,12 @@ public class database {
 					+ REC_AMT + " real not null,"
 					+ REC_CUR + " text not null,"
 					+ REC_CAT + " text not null,"
+					+ REC_ACC_ID + " text not null,"
 					+ REC_ACC_NAME+ " text not null,"
 					+ REC_PAY_NAME+ " text not null,"
 					+ REC_DATETIME + " text not null,"
-					+ REC_LOC + " text not null);";
+					+ REC_LOC + " text not null,"
+					+ REC_COMNT + " text not null);";
 	
 	private SQLiteHelper sqLiteHelper;
 	private SQLiteDatabase sqLiteDatabase;
@@ -104,11 +108,27 @@ public class database {
 		contentValues.put(ACC_EXP,0f);
 		contentValues.put(ACC_BUDG,0f);
 		return sqLiteDatabase.insert(ACCOUNT_TABLE, null, contentValues);
-
 	}
 	
-	public long insertRecord(String rec_trans_id, String rec_pay_id ,String rec_dir,double rec_amt, String rec_cur, 
-			String rec_cat, String rec_acc_name,String rec_pay_name,String rec_datetime, String rec_loc){
+	/*** method created ONLY FOR DEVELOPMENT stage, deprecate after deployment ***/
+	public long insertAccount_TEST(String acc_name, String acc_type,String acc_desc, String acc_col, String acc_cur,double acc_bal){
+
+		ContentValues contentValues = new ContentValues();
+		contentValues.put(ACC_NAME, acc_name);
+		contentValues.put(ACC_TYPE,acc_type);
+		contentValues.put(ACC_DESC,acc_desc);
+		contentValues.put(ACC_COL,acc_col);
+		contentValues.put(ACC_CUR,acc_cur);
+		contentValues.put(ACC_BAL,acc_bal);
+		contentValues.put(ACC_INC,0f);
+		contentValues.put(ACC_EXP,0f);
+		contentValues.put(ACC_BUDG,0f);
+		return sqLiteDatabase.insert(ACCOUNT_TABLE, null, contentValues);
+	}
+	
+	
+	public long insertRecord(String rec_trans_id, String rec_pay_id ,String rec_dir,double rec_amt, String rec_cur, String rec_cat, 
+			String rec_acc_id, String rec_acc_name,String rec_pay_name,String rec_datetime, String rec_loc, String rec_comnt){
 
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(REC_TRANS_ID,rec_trans_id);
@@ -117,10 +137,12 @@ public class database {
 		contentValues.put(REC_AMT,rec_amt);
 		contentValues.put(REC_CUR,rec_cur);
 		contentValues.put(REC_CAT,rec_cat);
+		contentValues.put(REC_ACC_ID, rec_acc_id);
 		contentValues.put(REC_ACC_NAME,rec_acc_name);
 		contentValues.put(REC_PAY_NAME,rec_pay_name);
 		contentValues.put(REC_DATETIME,rec_datetime);
 		contentValues.put(REC_LOC,rec_loc);
+		contentValues.put(REC_COMNT, rec_comnt);
 		
 		return sqLiteDatabase.insert(RECORD_TABLE, null, contentValues);
 	}
@@ -132,7 +154,6 @@ public class database {
 		contentValues.put(ACC_DESC,acc_desc);
 		contentValues.put(ACC_COL,acc_col);
 		contentValues.put(ACC_CUR,acc_cur);
-		System.out.println(id);
 		return sqLiteDatabase.update(ACCOUNT_TABLE, contentValues, ACC_KEY_ID+"="+id, null);
 	}
 	
@@ -140,7 +161,6 @@ public class database {
 	{
 		ContentValues contentValues = new ContentValues();
 		contentValues.put(ACC_BAL, acc_bal);
-		System.out.println(id);
 		return sqLiteDatabase.update(ACCOUNT_TABLE, contentValues, ACC_KEY_ID+"="+id, null);
 	}
 	
@@ -190,7 +210,7 @@ public class database {
 	}
 	
 	public Cursor query_Record_ALL(){
-		String a="SELECT * FROM RT ORDER BY date("+REC_DATETIME+") DESC";
+		String a="SELECT * FROM RT ORDER BY datetime("+REC_DATETIME+") DESC";
 
 		Cursor cursor=sqLiteDatabase.rawQuery(a, null);
 
@@ -206,9 +226,9 @@ public class database {
 		return cursor;
 	}
 	
-	public Cursor queue_Record_byAccount(String acc_name){
+	public Cursor queue_Record_byAccount(String acc_key_id){
 
-		String a="SELECT * FROM RT WHERE acc_name = " + acc_name;
+		String a="SELECT * FROM RT WHERE " + REC_ACC_ID + "=" + acc_key_id+" ORDER BY datetime("+REC_DATETIME+") DESC";
 		Cursor cursor=sqLiteDatabase.rawQuery(a, null);
 		return cursor;
 	}

@@ -3,36 +3,36 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="356" key="DIALOG_Y_ORIGIN"/>
-		<item value="380" key="DIALOG_HEIGHT"/>
 		<item value="1009" key="DIALOG_X_ORIGIN"/>
+		<item value="380" key="DIALOG_HEIGHT"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
+		<item value="true" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
-		<item value="true" key="wholeword"/>
-		<item value="intent" key="selection"/>
+		<item value="false" key="wholeword"/>
+		<item value="crouton" key="selection"/>
 		<list key="findhistory">
-			<item value="Intent"/>
-			<item value="getStringAsNdef"/>
-			<item value="createNdefMsg"/>
-			<item value="onNewIntent"/>
-			<item value="MESSAGE_SENT"/>
-			<item value="onMove"/>
-			<item value="createApplicationRecord"/>
-			<item value="setNdefPushMessage() "/>
+			<item value="crouton"/>
+			<item value="nfcExchanged"/>
+			<item value="insertRecord"/>
+			<item value="finish()"/>
+			<item value="accList"/>
+			<item value=" accList"/>
+			<item value="AccList"/>
+			<item value="RecListViewValuesArr"/>
 		</list>
 		<list key="replacehistory">
+			<item value="accList"/>
+			<item value="recListViewValuesArr"/>
+			<item value="accListViewValuesArr"/>
+			<item value="accNames"/>
+			<item value="nfc"/>
+			<item value="message"/>
+			<item value="NFC_content_SEND"/>
 			<item value="acc_all_cursor"/>
-			<item value="AccALLCursor"/>
-			<item value="ACC_NAME"/>
-			<item value=""/>
-			<item value="SW_DATABASE"/>
-			<item value="ACC_KEY_ID"/>
-			<item value="REC_KEY_ID"/>
-			<item value="ACCOUNT_TABLE"/>
 		</list>
 	</section>
 </section>

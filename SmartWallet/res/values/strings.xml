@@ -60,7 +60,8 @@
     <!--  Text view -->
     <string name="overview_total">Total Balance</string>
     <string name="overview_profile">Nicholas</string>
-    <string name="transrecord_account">Account</string>
+    <string name="record_account">Account</string>
+    <string name="record_empty">No records found</string>
     <string name="developer_database">Database</string>
     
     <!-- Button Description -->

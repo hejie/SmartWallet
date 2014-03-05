@@ -5,6 +5,12 @@
     android:background="@color/peterriver"
     android:orientation="vertical" >
 
+    <LinearLayout
+        android:id="@+id/nfc_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
     <ImageView
         android:id="@+id/nfc_logo_image"
         android:layout_gravity="center_horizontal"
@@ -23,9 +29,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/clouds" />
 	
+    </LinearLayout>
+    
      <TextView
         android:id="@+id/nfc_content_header"
-        android:background="@color/emerald"
+        android:background="@color/concrete"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/item_medium_padding"

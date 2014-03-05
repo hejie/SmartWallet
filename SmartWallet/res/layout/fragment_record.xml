@@ -17,7 +17,7 @@
 			android:padding = "@dimen/item_large_padding"
 			android:layout_marginLeft="@dimen/item_xlarge_padding"
 			android:layout_marginRight="@dimen/item_xlarge_padding"
-            android:text="@string/transrecord_account"
+            android:text="@string/record_account"
             android:textAppearance="?android:attr/textAppearanceMediumInverse" />
 
         <Spinner
@@ -30,14 +30,25 @@
 
 	</LinearLayout>
 	
+	<TextView 
+	    android:id="@+id/record_empty_text"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="center_horizontal"
+	    android:text="@string/record_empty"
+	    android:textAppearance="?android:attr/textAppearanceLarge"
+	    android:textColor="@color/asbestos"
+	    android:padding = "@dimen/item_large_padding"
+	    android:layout_below="@id/record_header"/>
+	"
     <ListView
         android:id="@+id/recordList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/record_header"
-        android:background="@color/silver"
+        android:layout_below="@id/record_empty_text"
+        android:background="@color/clouds"
         android:clipToPadding="false"
-        android:divider="@color/silver"
+        android:divider="@color/clouds"
         android:dividerHeight="@dimen/item_small_padding"
         android:fadingEdge="none"
         android:padding="@dimen/item_large_padding"

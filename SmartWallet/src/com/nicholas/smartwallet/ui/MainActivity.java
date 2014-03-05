@@ -2,17 +2,19 @@ package com.nicholas.smartwallet.ui;
 
 import java.util.ArrayList;
 
-import com.nicholas.smartwallet.model.SlideMenuItem;
+import com.nicholas.smartwallet.model.*;
 import com.nicholas.smartwallet.ui.R;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -21,11 +23,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 import dev.dworks.libs.astickyheader.SimpleSectionedListAdapter;
 import dev.dworks.libs.astickyheader.SimpleSectionedListAdapter.Section;
 
 public class MainActivity extends Activity{
+	// static value
+	private static final int transactionActivityID = 0;
+	private static final int nfcActivityID = 1;
+	protected static final int RESULT_SPEECH = 2;
+	
+	// UI components
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -47,19 +58,13 @@ public class MainActivity extends Activity{
     private TypedArray slideMenuMainIcons, slideMenuViewIcons, slideMenuToolsIcons, slideMenuOptionsIcons;
     private ArrayList<String> mSlideMenuItemTitles = new ArrayList<String>();
     private ArrayList<SlideMenuItem> mSlideMenuItems;
-    
+    // slide menu adapter
     private SlideMenuAdapter mSlideMenuAdapter;
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        
-        fragmentManager = getFragmentManager();
-        
-        // Set up the action bar.
+    
+	public void setupActionBar()
+	{
+		// Set up the action bar.
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 
@@ -163,7 +168,18 @@ public class MainActivity extends Activity{
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
- 
+	}
+	
+	
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        fragmentManager = getFragmentManager();
+
+        setupActionBar();
+		
         if (savedInstanceState == null) {
             // on first time display view for first nav item
             chooseFragment(0);
@@ -189,19 +205,34 @@ public class MainActivity extends Activity{
         switch (item.getItemId()) {
         case R.id.action_transaction:
         	  //Create the intent
-        	  Intent i = new Intent(this, TransactionActivity.class);
+        	  Intent transactionAcvitiyIntent = new Intent(this, TransactionActivity.class);
         	  //Create the bundle
-        	  Bundle bundle = new Bundle();
-        	  //Add your data to bundle
-        	  bundle.putString("payeeID", "1120733");
-        	  bundle.putString("payeeName", "Nicholas");
-        	  bundle.putString("category", "person");
-        	  bundle.putString("currency","SGD");
-        	  bundle.putString("location", "Singapore");
+        	  Bundle transBundle = new Bundle();
+        	  //Add data to bundle
+        	  transBundle.putString("payeeID", "1120-733");
+        	  transBundle.putString("payeeName", "Nicholas");
+        	  transBundle.putString("category", "Person");
+        	  transBundle.putString("location", "Singapore");
         	  //Add the bundle to the intent
-        	  i.putExtras(bundle);
-        	startActivity(i);
+        	  transactionAcvitiyIntent.putExtras(transBundle);
+        	startActivityForResult(transactionAcvitiyIntent, transactionActivityID);
             return true;
+        case R.id.action_mic:
+        	Intent intent = new Intent(
+					RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+
+			intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
+			intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Voice Command(Payment)\n"
+					+ "Ex. '10 Cash' to pay $10 cash");
+			try {
+				startActivityForResult(intent, RESULT_SPEECH);
+			} catch (ActivityNotFoundException a) {
+				Toast t = Toast.makeText(getApplicationContext(),
+						"Oops! Your device doesn't support Speech to Text",
+						Toast.LENGTH_SHORT);
+				t.show();
+			}
+			return true;
         default:
             return super.onOptionsItemSelected(item);
         }
@@ -315,5 +346,34 @@ public class MainActivity extends Activity{
     	setTitle(mSlideMenuItemTitles.get(0));
     	
 	    super.onBackPressed();
+	}
+	
+	@Override 
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {   
+		super.onActivityResult(requestCode, resultCode, data); 
+		switch(requestCode) { 
+		// if transaction activity succeed, starts nfc activity
+		case (transactionActivityID) :  
+			if (resultCode == Activity.RESULT_OK) { 
+				//Create the intent
+				Intent nfcActivityIntent = new Intent(this, NFCActivity.class);
+				//Get the bundle from Transaction Activity
+				Bundle bundle = data.getExtras();
+				nfcActivityIntent.putExtras(bundle);
+				startActivityForResult(nfcActivityIntent, nfcActivityID);	        
+			}
+		break;
+		// if nfc activity succeed, go to overview fragment 
+		case(nfcActivityID):
+			chooseFragment(0);
+		break;
+		case RESULT_SPEECH: 
+			if (resultCode == RESULT_OK && null != data) {
+
+				ArrayList<String> text = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+				Crouton.makeText(this,  text.get(0), Style.CONFIRM).show();
+			}
+		break;
+		} 
 	}
 }

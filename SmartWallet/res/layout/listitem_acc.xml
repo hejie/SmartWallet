@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/accName_text" 
         android:layout_toRightOf="@id/accIcon_image"
-        android:padding="@dimen/item_small_padding"/>
+        android:padding="@dimen/item_small_padding"
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
         
     <TextView
         android:id="@+id/accBalance_text"

@@ -7,11 +7,13 @@ public class RecordModel {
 	private String payeeId;
 	private String direction;
 	private String currency;
+	private String accId;
 	private String accName;
 	private String payeeName;
 	private String datetime;
 	private String category;
 	private String location;
+	private String comments;
 	
 	public RecordModel(){
 	}
@@ -41,6 +43,11 @@ public class RecordModel {
 		this.currency = currency;
 	}
 	
+	public void setAccID(String accId)
+	{
+		this.accId = accId;
+	}
+	
 	public void setAccName(String accName)
 	{
 		this.accName = accName;
@@ -64,6 +71,11 @@ public class RecordModel {
 	public void setLocation(String location)
 	{
 		this.location = location;
+	}
+	
+	public void setComments(String comments)
+	{
+		this.comments = comments;
 	}
 	
 	public String getTransId()
@@ -91,6 +103,11 @@ public class RecordModel {
 		return this.currency;
 	}
 	
+	public String getAccID()
+	{
+		return this.accId;
+	}
+	
 	public String getAccName()
 	{
 		return this.accName;
@@ -116,4 +133,10 @@ public class RecordModel {
 	{
 		return this.location;
 	}
+	
+	public String getComments()
+	{
+		return this.comments;
+	}
+	
 }
